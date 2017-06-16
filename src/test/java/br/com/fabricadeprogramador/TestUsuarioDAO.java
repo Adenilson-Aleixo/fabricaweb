@@ -1,19 +1,25 @@
 package br.com.fabricadeprogramador;
 
+
+import java.util.List;
+
 import br.com.fabricadeprogramador.persistencia.entidade.Usuario;
 import br.com.fabricadeprogramador.persistencia.jdbc.UsuarioDAO;
 
 public class TestUsuarioDAO {
 
 	public static void main(String[] args) {
-		testBuscaPorId();
+		//testBuscaPorId();
+		//testBuscaTodos();
+		//testCadastrar();
+		testAutenticar();
 	}
 
 	public static void testCadastrar() {
 		Usuario usu = new Usuario();
 
-		usu.setNome("Adenilson");
-		usu.setLogin("ade");
+		usu.setNome("Usuario Teste");
+		usu.setLogin("teste");
 		usu.setSenha("123");
 
 		UsuarioDAO usuDAO = new UsuarioDAO();
@@ -65,6 +71,28 @@ public class TestUsuarioDAO {
 		
 		System.out.println(usu);
 		
+	}
+	
+	public static void testBuscaTodos(){
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		
+		List<Usuario> lista = usuDAO.buscaTodos();
+		for(Usuario u: lista ){
+			System.out.println(u);
+		}
+		
+	}
+	
+	private static void testAutenticar (){
+		UsuarioDAO usuDAO = new UsuarioDAO();
+		
+		Usuario usuario = new Usuario();
+		usuario.setLogin("teste");
+		usuario.setSenha("123");
+		
+		Usuario usuRetorno = usuDAO.autenticar(usuario);
+		
+		System.out.println(usuRetorno);
 	}
 
 }
