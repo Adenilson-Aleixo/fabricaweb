@@ -35,10 +35,15 @@ public class UsuarioController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String nome = req.getParameter("nome");
+		String login = req.getParameter("login");
+		String senha = req.getParameter("senha");
+		
 		Usuario usu = new Usuario();
-		usu.setNome(req.getParameter("nome"));
-		usu.setLogin(req.getParameter("login"));
-		usu.setSenha(req.getParameter("senha"));
+		usu.setNome(nome);
+		usu.setLogin(login);
+		usu.setSenha(senha);
 		
 		UsuarioDAO usuDAO = new UsuarioDAO();
 		usuDAO.cadastrar(usu);
